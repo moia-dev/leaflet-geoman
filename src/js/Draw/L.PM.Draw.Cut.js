@@ -42,8 +42,10 @@ Draw.Cut = Draw.Polygon.extend({
       resultingLayer.addTo(this._map);
 
       // give the new layer the original options
-      resultingLayer.pm.enable(this.options);
-      resultingLayer.pm.disable();
+      if (resultingLayer.pm) {
+        resultingLayer.pm.enable(this.options);
+        resultingLayer.pm.disable();
+      }
 
       // fire pm:cut on the cutted layer
       l.fire('pm:cut', {
